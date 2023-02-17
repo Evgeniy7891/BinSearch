@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainFragment">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="@string/bin_search"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_bin_number"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:paddingStart="24dp"
+        android:hint="XXXXX XXXX"
+        android:background="@drawable/edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/teal_200"
+        android:fontFamily="@font/mark_pro"
+        android:text="Get"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="@+id/et_bin_number"
+        app:layout_constraintTop_toBottomOf="@+id/et_bin_number"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/teal_200"
+        android:fontFamily="@font/mark_pro"
+        android:text="History"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_bin_number"
+        app:layout_constraintTop_toBottomOf="@+id/et_bin_number"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:id="@+id/tv_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="SCHEME / NETWORK"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get" />
+
+    <TextView
+        android:id="@+id/tv_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="BRAND"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_network"
+        app:layout_constraintTop_toBottomOf="@+id/tv_network" />
+
+    <TextView
+        android:id="@+id/tv_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="CARD NUMBER"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_brand"
+        app:layout_constraintTop_toBottomOf="@+id/tv_brand" />
+
+
+    <TextView
+        android:id="@+id/tv_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="LENGTH"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_number"
+        app:layout_constraintStart_toEndOf="@+id/tv_card_number"
+        app:layout_constraintTop_toTopOf="@+id/tv_card_number" />
+
+    <TextView
+        android:id="@+id/tv_length_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_length"
+        app:layout_constraintStart_toEndOf="@+id/tv_length"
+        app:layout_constraintTop_toTopOf="@+id/tv_length" />
+
+
+    <TextView
+        android:id="@+id/tv_luhn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="LUHN"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_length_result"
+        app:layout_constraintStart_toEndOf="@+id/tv_length_result"
+        app:layout_constraintTop_toTopOf="@+id/tv_length_result" />
+
+    <TextView
+        android:id="@+id/tv_luhn_result"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_luhn"
+        app:layout_constraintStart_toEndOf="@+id/tv_luhn"
+        app:layout_constraintTop_toTopOf="@+id/tv_luhn" />
+
+    <TextView
+        android:id="@+id/tv_TYPE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="TYPE"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_card_number"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_number" />
+
+    <TextView
+        android:id="@+id/tv_prepaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="PREPAID"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_TYPE"
+        app:layout_constraintTop_toBottomOf="@+id/tv_TYPE" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="COUNTRY"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_prepaid"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prepaid" />
+
+    <TextView
+        android:id="@+id/tv_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="BANK"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_country"
+        app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+
+    <TextView
+        android:id="@+id/tv_network_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_network"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_network"
+        app:layout_constraintTop_toTopOf="@+id/tv_network" />
+
+    <TextView
+        android:id="@+id/tv_brand_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_brand"
+        app:layout_constraintTop_toTopOf="@+id/tv_brand" />
+
+    <TextView
+        android:id="@+id/tv_type_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_TYPE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_TYPE"
+        app:layout_constraintTop_toTopOf="@+id/tv_TYPE" />
+
+    <TextView
+        android:id="@+id/tv_prepaid_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_prepaid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_prepaid"
+        app:layout_constraintTop_toTopOf="@+id/tv_prepaid" />
+
+    <TextView
+        android:id="@+id/tv_country_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_country"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_country"
+        app:layout_constraintTop_toTopOf="@+id/tv_country" />
+
+    <TextView
+        android:id="@+id/tv_bank_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_bank"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_bank"
+        app:layout_constraintTop_toTopOf="@+id/tv_bank" />
+
+    <TextView
+        android:id="@+id/tv_web_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/purple_500"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_bank_result"
+        app:layout_constraintStart_toStartOf="@+id/tv_bank_result"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bank_result" />
+
+    <TextView
+        android:id="@+id/tv_phone_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mark_pro"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_web_result"
+        app:layout_constraintStart_toStartOf="@+id/tv_web_result"
+        app:layout_constraintTop_toBottomOf="@+id/tv_web_result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
