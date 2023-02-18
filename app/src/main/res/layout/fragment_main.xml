@@ -301,4 +301,17 @@
         app:layout_constraintStart_toStartOf="@+id/tv_web_result"
         app:layout_constraintTop_toBottomOf="@+id/tv_web_result" />
 
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mark_pro"
+        android:text="HISTORY"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone_result" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
