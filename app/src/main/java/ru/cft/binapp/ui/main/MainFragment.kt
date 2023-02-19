@@ -1,7 +1,5 @@
-package ru.cft.binapp.ui
+package ru.cft.binapp.ui.main
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -11,31 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
-import ru.cft.binapp.R
 import ru.cft.binapp.databinding.FragmentMainBinding
-import ru.cft.binapp.models.BinModel
-import java.lang.reflect.Type
-import java.util.ArrayList
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val gson = Gson()
-    private val type = TypeToken.getParameterized(List::class.java, BinModel::class.java).type
-    private val key = "key"
-
     private val viewModel: MainViewModel by viewModels()
 
     lateinit var binding: FragmentMainBinding
-
-    var pref: SharedPreferences? = null
-    private var result = listOf<BinModel>()
-    private val history = mutableListOf<BinModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +26,7 @@ class MainFragment : Fragment() {
     ): View? {
 
         binding = FragmentMainBinding.inflate(inflater, container, false)
-        pref = context?.getSharedPreferences("repo", Context.MODE_PRIVATE)
+
         initialClick()
         onInput()
 
@@ -57,9 +40,7 @@ class MainFragment : Fragment() {
                 initialInfo(bin)
             }
             btnHistory.setOnClickListener {
-                pref?.getString(key, "History empty")?.let{
-                    result = gson.fromJson(it, type)
-                }
+
             }
         }
     }
@@ -81,11 +62,7 @@ class MainFragment : Fragment() {
                     tvPhoneResult.text = result?.bank?.phone
 
                     if (result != null) {
-                        history.add(result)
-                        val editor = pref?.edit()
-                        val text = gson.toJson(history)
-                        editor?.putString(key, text)
-                        editor?.apply()
+                        viewModel.saveInfo(result)
                     }
                 }
             }

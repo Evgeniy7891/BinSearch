@@ -1,4 +1,4 @@
-package ru.cft.binapp.ui
+package ru.cft.binapp.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,12 +7,14 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.cft.binapp.domain.model.NetworkState
 import ru.cft.binapp.domain.usecases.GetInfoBinUseCase
+import ru.cft.binapp.domain.usecases.SaveSharedPrefUseCase
 import ru.cft.binapp.models.BinModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getInfoBinUseCase: GetInfoBinUseCase
+    private val getInfoBinUseCase: GetInfoBinUseCase,
+    private val saveSharedPrefUseCase: SaveSharedPrefUseCase
 ) : ViewModel(){
 
     private val _errorMessage = MutableSharedFlow<String>()
@@ -31,4 +33,6 @@ class MainViewModel @Inject constructor(
             is NetworkState.Success -> _result.emit(response.success)
         }
     }
+    suspend fun saveInfo(info: BinModel) = saveSharedPrefUseCase.invoke(info)
+
 }
