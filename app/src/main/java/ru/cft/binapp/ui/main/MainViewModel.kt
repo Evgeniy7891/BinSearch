@@ -34,5 +34,4 @@ class MainViewModel @Inject constructor(
         }
     }
     suspend fun saveInfo(info: BinModel) = saveSharedPrefUseCase.invoke(info)
-
 }

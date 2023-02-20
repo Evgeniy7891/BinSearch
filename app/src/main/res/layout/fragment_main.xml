@@ -264,13 +264,16 @@
 
     <TextView
         android:id="@+id/tv_bank_result"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAlignment="gravity"
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/mark_pro"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/barrier"
         app:layout_constraintBottom_toBottomOf="@+id/tv_bank"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_bank" />
@@ -301,17 +304,12 @@
         app:layout_constraintStart_toStartOf="@+id/tv_web_result"
         app:layout_constraintTop_toBottomOf="@+id/tv_web_result" />
 
-    <TextView
-        android:id="@+id/tv_history"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/mark_pro"
-        android:text="HISTORY"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone_result" />
+        android:layout_marginStart="8dp"
+        app:barrierDirection="left"
+        app:layout_constraintStart_toEndOf="@id/tv_bank" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

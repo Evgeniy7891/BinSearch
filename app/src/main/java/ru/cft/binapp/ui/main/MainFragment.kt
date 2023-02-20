@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
 import android.text.InputType
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.cft.binapp.R
 import ru.cft.binapp.databinding.FragmentMainBinding
 
 @AndroidEntryPoint
@@ -37,18 +40,22 @@ class MainFragment : Fragment() {
         with(binding) {
             btnGet.setOnClickListener {
                 val bin = binding.etBinNumber.text.toString().toInt()
+                Log.d("TAG", " GET - $bin")
                 initialInfo(bin)
             }
             btnHistory.setOnClickListener {
-
+                findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
             }
         }
     }
 
     private fun initialInfo(bin: Int) {
         viewModel.getInfo(bin)
+        Log.d("TAG", "ViewModel - $bin")
         lifecycleScope.launchWhenCreated {
             viewModel.result.collect { result ->
+                Log.d("TAG", " result - $result")
+                result?.bin = bin
                 with(binding) {
                     tvNetworkResult.text = result?.scheme
                     tvBrandResult.text = result?.brand
@@ -62,6 +69,7 @@ class MainFragment : Fragment() {
                     tvPhoneResult.text = result?.bank?.phone
 
                     if (result != null) {
+                        Log.d("TAG", "if null")
                         viewModel.saveInfo(result)
                     }
                 }
