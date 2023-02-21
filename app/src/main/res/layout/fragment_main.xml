@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
-    <ru.cft.binapp.ui.main.LoaderButton
+    <ru.cft.binapp.utils.LoaderButton
         android:id="@+id/btn_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="@+id/et_bin_number"
         app:layout_constraintTop_toBottomOf="@+id/et_bin_number" />
 
-    <ru.cft.binapp.ui.main.LoaderButton
+    <ru.cft.binapp.utils.LoaderButton
         android:id="@+id/btn_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,6 +67,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_get" />
 
+    <ImageView
+        android:id="@+id/anim1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_network"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_network" />
+
     <TextView
         android:id="@+id/tv_brand"
         android:layout_width="wrap_content"
@@ -77,6 +88,17 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_network"
         app:layout_constraintTop_toBottomOf="@+id/tv_network" />
+
+    <ImageView
+        android:id="@+id/anim2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_brand" />
 
     <TextView
         android:id="@+id/tv_card_number"
@@ -114,6 +136,16 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_luhn"
         app:layout_constraintTop_toTopOf="@+id/tv_length" />
 
+    <ImageView
+        android:id="@+id/anim3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_card_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_card_number" />
 
     <TextView
         android:id="@+id/tv_luhn"
@@ -150,6 +182,17 @@
         app:layout_constraintStart_toStartOf="@+id/tv_card_number"
         app:layout_constraintTop_toBottomOf="@+id/tv_card_number" />
 
+    <ImageView
+        android:id="@+id/anim4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_TYPE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_TYPE" />
+
     <TextView
         android:id="@+id/tv_prepaid"
         android:layout_width="wrap_content"
@@ -160,6 +203,17 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_TYPE"
         app:layout_constraintTop_toBottomOf="@+id/tv_TYPE" />
+
+    <ImageView
+        android:id="@+id/anim5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_prepaid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_prepaid" />
 
     <TextView
         android:id="@+id/tv_country"
@@ -172,6 +226,17 @@
         app:layout_constraintStart_toStartOf="@+id/tv_prepaid"
         app:layout_constraintTop_toBottomOf="@+id/tv_prepaid" />
 
+    <ImageView
+        android:id="@+id/anim6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_country"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_country" />
+
     <TextView
         android:id="@+id/tv_bank"
         android:layout_width="wrap_content"
@@ -182,6 +247,17 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/tv_country"
         app:layout_constraintTop_toBottomOf="@+id/tv_country" />
+
+    <ImageView
+        android:id="@+id/anim7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bank"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_bank" />
 
     <TextView
         android:id="@+id/tv_network_result"

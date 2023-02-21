@@ -1,4 +1,4 @@
-package ru.cft.binapp.ui.main
+package ru.cft.binapp.utils
 
 import android.content.Context
 import android.util.AttributeSet
