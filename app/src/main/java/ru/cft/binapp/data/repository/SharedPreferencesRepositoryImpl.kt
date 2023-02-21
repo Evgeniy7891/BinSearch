@@ -1,6 +1,8 @@
 package ru.cft.binapp.data.repository
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -13,22 +15,31 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
     private val gson = Gson()
     private val type = TypeToken.getParameterized(List::class.java, BinModel::class.java).type
     private val key = "key"
-    var pref = context.getSharedPreferences("repo", Context.MODE_PRIVATE)
+    var pref: SharedPreferences = context.getSharedPreferences("repo", Context.MODE_PRIVATE)
     private var result = listOf<BinModel>()
-    private val history = mutableListOf<BinModel>()
+    private var history = mutableListOf<BinModel>()
+
+    init {
+        pref.getString(key, null)?.let{
+            history = gson.fromJson(it, type)
+        }
+    }
 
     override suspend fun saveRequest(info: BinModel) {
+        Log.d("TAG", "Shared history - ${history} ")
         history.add(info)
-        val editor = pref?.edit()
+        val editor = pref.edit()
         val text = gson.toJson(history)
+        Log.d("TAG", "Shared - ${text} ")
         editor?.putString(key, text)
         editor?.apply()
     }
 
     override suspend fun getHistory(): List<BinModel> {
-        pref?.getString(key, "History empty")?.let {
+        pref.getString(key, "History empty")?.let {
             result = gson.fromJson(it, type)
         }
+        Log.d("TAG", "GET SHARED ${result} ")
         return result
     }
 }

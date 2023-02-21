@@ -11,6 +11,5 @@ data class BinModel(
     val number: Number,
     val prepaid: Boolean,
     val scheme: String,
-    val type: String,
-    var bin: Int
+    val type: String
 ): Parcelable

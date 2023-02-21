@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ru.cft.binapp.R
 import ru.cft.binapp.databinding.FragmentMainBinding
 
@@ -52,25 +55,24 @@ class MainFragment : Fragment() {
     private fun initialInfo(bin: Int) {
         viewModel.getInfo(bin)
         Log.d("TAG", "ViewModel - $bin")
-        lifecycleScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted{
+            delay(3000)
             viewModel.result.collect { result ->
-                Log.d("TAG", " result - $result")
-                result?.bin = bin
-                with(binding) {
-                    tvNetworkResult.text = result?.scheme
-                    tvBrandResult.text = result?.brand
-                    tvLengthResult.text = result?.number?.length.toString()
-                    tvLuhnResult.text = result?.number?.luhn.toString()
-                    tvTypeResult.text = result?.type
-                    tvPrepaidResult.text = if (result?.prepaid == true) "Yes" else "No"
-                    tvCountryResult.text = result?.country?.name
-                    tvBankResult.text = result?.bank?.name + ", " + result?.bank?.city
-                    tvWebResult.text = result?.bank?.url
-                    tvPhoneResult.text = result?.bank?.phone
-
-                    if (result != null) {
-                        Log.d("TAG", "if null")
-                        viewModel.saveInfo(result)
+                if (result != null) {
+                    Log.d("TAG","if")
+                    viewModel.saveInfo(result)
+                    Log.d("TAG", " result - $result")
+                    with(binding) {
+                        tvNetworkResult.text = result?.scheme
+                        tvBrandResult.text = result?.brand
+                        tvLengthResult.text = result?.number?.length.toString()
+                        tvLuhnResult.text = result?.number?.luhn.toString()
+                        tvTypeResult.text = result?.type
+                        tvPrepaidResult.text = if (result?.prepaid == true) "Yes" else "No"
+                        tvCountryResult.text = result?.country?.name
+                        tvBankResult.text = result?.bank?.name + ", " + result?.bank?.city
+                        tvWebResult.text = result?.bank?.url
+                        tvPhoneResult.text = result?.bank?.phone
                     }
                 }
             }

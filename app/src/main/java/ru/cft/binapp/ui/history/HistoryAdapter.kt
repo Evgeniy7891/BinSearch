@@ -28,7 +28,6 @@ class HistoryAdapter (private val list: List<BinModel>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BinModel) {
             with(binding) {
-                tvBankResult.text = item.bin.toString()
                 tvNetworkResult.text = item.scheme
                 tvBrandResult.text = item.brand
                 tvLengthResult.text = item.number.length.toString()

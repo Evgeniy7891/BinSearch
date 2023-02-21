@@ -1,5 +1,6 @@
 package ru.cft.binapp.ui.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,7 @@ class MainViewModel @Inject constructor(
     val result = _result.asStateFlow()
 
     fun getInfo(bin: Int) = viewModelScope.launch{
+        Log.d("TAG", " get Info")
         when (val response = getInfoBinUseCase.invoke(bin)) {
             is NetworkState.Error -> _errorMessage.emit(response.throwable)
             is NetworkState.Loading -> TODO("not implemented yet")

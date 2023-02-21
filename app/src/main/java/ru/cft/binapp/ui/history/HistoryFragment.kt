@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import ru.cft.binapp.R
 import ru.cft.binapp.databinding.FragmentHistoryBinding
 import ru.cft.binapp.databinding.FragmentMainBinding
@@ -31,8 +33,9 @@ class HistoryFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        viewModel.history.observe(viewLifecycleOwner) { history ->
-            val adapter = HistoryAdapter(history)
+        lifecycleScope.launch {
+            val list = viewModel.getInfo()
+            val adapter = HistoryAdapter(list)
             binding.recyclerview.adapter = adapter
         }
     }

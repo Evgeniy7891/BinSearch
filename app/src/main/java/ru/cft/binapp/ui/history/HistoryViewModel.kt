@@ -13,16 +13,10 @@ import javax.inject.Inject
 class HistoryViewModel @Inject constructor(val getSharedPrefUseCase: GetSharedPrefUseCase) :
     ViewModel() {
 
-    private val _history = MutableLiveData<List<BinModel>>()
-    val history = _history
+    private var _history = listOf<BinModel>()
 
-    init {
-        getInfo()
-    }
-
-    private fun getInfo() {
-        viewModelScope.launch {
-            _history.value = getSharedPrefUseCase.invoke()
-        }
+    suspend fun getInfo() : List<BinModel> {
+        _history = getSharedPrefUseCase.invoke()
+        return _history
     }
 }
