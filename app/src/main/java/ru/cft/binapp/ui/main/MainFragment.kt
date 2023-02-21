@@ -42,9 +42,12 @@ class MainFragment : Fragment() {
     private fun initialClick() {
         with(binding) {
             btnGet.setOnClickListener {
-                val bin = binding.etBinNumber.text.toString().toInt()
-                Log.d("TAG", " GET - $bin")
-                initialInfo(bin)
+                val bin = etBinNumber.text.toString()
+              if(bin != ""){
+                  initialInfo(bin.toInt())
+                  Log.d("TAG", " GET - $bin")
+                  btnGet.isLoading = true
+              }
             }
             btnHistory.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
@@ -63,6 +66,7 @@ class MainFragment : Fragment() {
                     viewModel.saveInfo(result)
                     Log.d("TAG", " result - $result")
                     with(binding) {
+                        btnGet.isLoading = false
                         tvNetworkResult.text = result?.scheme
                         tvBrandResult.text = result?.brand
                         tvLengthResult.text = result?.number?.length.toString()

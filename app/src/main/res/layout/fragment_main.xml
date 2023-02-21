@@ -33,41 +33,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
-    <com.google.android.material.button.MaterialButton
+    <ru.cft.binapp.ui.main.LoaderButton
         android:id="@+id/btn_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/teal_200"
+        app:textBtn="Get"
         android:fontFamily="@font/mark_pro"
-        android:text="Get"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:cornerRadius="20dp"
         app:layout_constraintStart_toStartOf="@+id/et_bin_number"
-        app:layout_constraintTop_toBottomOf="@+id/et_bin_number"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:layout_constraintTop_toBottomOf="@+id/et_bin_number" />
 
-    <com.google.android.material.button.MaterialButton
+    <ru.cft.binapp.ui.main.LoaderButton
         android:id="@+id/btn_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/teal_200"
         android:fontFamily="@font/mark_pro"
-        android:text="History"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:cornerRadius="20dp"
+        app:textBtn="History"
         app:layout_constraintEnd_toEndOf="@+id/et_bin_number"
-        app:layout_constraintTop_toBottomOf="@+id/et_bin_number"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:layout_constraintTop_toBottomOf="@+id/et_bin_number" />
 
     <TextView
         android:id="@+id/tv_network"
