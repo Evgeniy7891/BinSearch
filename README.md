@@ -1,7 +1,8 @@
 # [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bin+App)](https://git.io/typing-svg)
 ## **Android приложение для поиска информации о банковских картах через бин номер**
 ### Скриншоты
-![2023-02-22_21-01-23](https://user-images.githubusercontent.com/99983028/220702207-7216dc8a-b1c4-4893-847e-d96f65305944.png)
+![2023-02-22_21-38-19](https://user-images.githubusercontent.com/99983028/220710601-027fc38f-9ec5-4e7c-8b39-15e324dc4878.png)
+
 
 **Стек технологий:**
 ---------------------------------------
