@@ -8,7 +8,6 @@ import javax.inject.Inject
 class SaveSharedPrefUseCase @Inject constructor(private val repository: SharedPreferencesRepository){
 
     suspend operator fun invoke(info: BinModel)  {
-        Log.d("TAG", " USE CASE - $info")
         return repository.saveRequest(info)
     }
 }

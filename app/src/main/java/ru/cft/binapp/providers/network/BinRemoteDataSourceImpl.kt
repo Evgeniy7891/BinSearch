@@ -8,7 +8,6 @@ import javax.inject.Inject
 class BinRemoteDataSourceImpl @Inject constructor(private val apiService: NetworkService) : BinRemoteDataSource {
 
     override suspend fun getInfo(bin: Int): BinModel {
-        Log.d("TAG", "API ${apiService.getInfo(bin)} ")
       return apiService.getInfo(bin)
     }
 }

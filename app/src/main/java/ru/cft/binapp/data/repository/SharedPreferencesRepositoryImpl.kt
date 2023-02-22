@@ -26,11 +26,9 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
     }
 
     override suspend fun saveRequest(info: BinModel) {
-        Log.d("TAG", "Shared history - ${history} ")
         history.add(info)
         val editor = pref.edit()
         val text = gson.toJson(history)
-        Log.d("TAG", "Shared - ${text} ")
         editor?.putString(key, text)
         editor?.apply()
     }
@@ -39,7 +37,6 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
         pref.getString(key, "History empty")?.let {
             result = gson.fromJson(it, type)
         }
-        Log.d("TAG", "GET SHARED ${result} ")
         return result
     }
 }
