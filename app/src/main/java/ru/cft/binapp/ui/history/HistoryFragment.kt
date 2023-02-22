@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.cft.binapp.R
@@ -19,14 +20,16 @@ class HistoryFragment : Fragment() {
 
     private val viewModel: HistoryViewModel by viewModels()
 
-    lateinit var binding: FragmentHistoryBinding
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding ?: throw IllegalStateException("Cannot access view")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
+        initialClick()
         initAdapter()
 
         return binding.root
@@ -38,5 +41,14 @@ class HistoryFragment : Fragment() {
             val adapter = HistoryAdapter(list)
             binding.recyclerview.adapter = adapter
         }
+    }
+    private fun initialClick() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_historyFragment_to_mainFragment)
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
