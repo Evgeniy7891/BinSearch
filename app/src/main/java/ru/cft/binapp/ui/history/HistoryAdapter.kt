@@ -30,14 +30,14 @@ class HistoryAdapter (private val list: List<BinModel>) :
             with(binding) {
                 tvNetworkResult.text = item.scheme
                 tvBrandResult.text = item.brand
-                tvLengthResult.text = item.number.length.toString()
-                tvLuhnResult.text = item.number.luhn.toString()
+                tvLengthResult.text = item.number?.length.toString()
+                tvLuhnResult.text = item.number?.luhn.toString()
                 tvTypeResult.text = item.type
-                tvPrepaidResult.text = if (item.prepaid) "Yes" else "No"
-                tvCountryResult.text = item.country.name
-                tvBankResult.text = item.bank.name + ", " + item.bank.city
-                tvWebResult.text = item.bank.url
-                tvPhoneResult.text = item.bank.phone
+                tvPrepaidResult.text = if (item.prepaid == true) "Yes" else "No"
+                tvCountryResult.text = item.country?.name
+                tvBankResult.text = item.bank?.name
+                tvWebResult.text = item.bank?.url
+                tvPhoneResult.text = item.bank?.phone
             }
         }
     }

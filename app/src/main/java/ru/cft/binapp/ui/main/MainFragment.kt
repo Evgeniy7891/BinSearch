@@ -1,6 +1,7 @@
 package ru.cft.binapp.ui.main
 
-import android.graphics.drawable.AnimatedVectorDrawable
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -11,14 +12,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import ru.cft.binapp.R
 import ru.cft.binapp.databinding.FragmentMainBinding
 import ru.cft.binapp.utils.startAnim
@@ -56,6 +54,12 @@ class MainFragment : Fragment() {
             btnHistory.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_historyFragment)
             }
+            tvPhoneResult.setOnClickListener {
+                goToPhone(tvPhoneResult.text.toString())
+            }
+            tvWebResult.setOnClickListener {
+                goToUrl("https://+${tvWebResult.text.toString()}")
+            }
         }
     }
 
@@ -80,15 +84,18 @@ class MainFragment : Fragment() {
                         startAnim(anim7)
                         tvNetworkResult.text = result.scheme
                         tvBrandResult.text = result.brand
-                        tvLengthResult.text = result.number.length.toString()
-                        tvLuhnResult.text = result.number.luhn.toString()
+                        tvLengthResult.text = result.number?.length.toString()
+                        tvLuhnResult.text = result.number?.luhn.toString()
                         tvTypeResult.text = result.type
-                        tvPrepaidResult.text = if (result.prepaid) "Yes" else "No"
-                        tvCountryResult.text = result.country.name
-                        tvBankResult.text = result.bank.name
-                        tvWebResult.text = result.bank.url
-                        tvPhoneResult.text = result.bank.phone
+                        tvPrepaidResult.text = if (result.prepaid == true) "Yes" else "No"
+                        tvCountryResult.text = result.country?.name
+                        tvBankResult.text = result.bank?.name
+                        tvWebResult.text = result.bank?.url
+                        tvPhoneResult.text = result.bank?.phone
                     }
+                } else {
+                    binding.btnGet.isLoading = false
+                Toast.makeText(requireContext(), "No data available", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -99,5 +106,14 @@ class MainFragment : Fragment() {
             etBinNumber.filters = arrayOf<InputFilter>(LengthFilter(8))
             etBinNumber.inputType = InputType.TYPE_CLASS_NUMBER
         }
+    }
+    private fun goToUrl(url: String) {
+        val uri = Uri.parse(url)
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
+    }
+
+    private fun goToPhone(number: String) {
+        val uri = Uri.fromParts("tel", number, null)
+        startActivity(Intent(Intent.ACTION_DIAL, uri))
     }
 }
