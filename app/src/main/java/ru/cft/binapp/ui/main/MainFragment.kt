@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
 
     private fun initialInfo(bin: Int) {
         viewModel.getInfo(bin)
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             delay(3000)
             viewModel.result.collect { result ->
                 if (result != null) {
@@ -88,10 +88,11 @@ class MainFragment : Fragment() {
                         tvBankResult.text = result.bank?.name
                         tvWebResult.text = result.bank?.url
                         tvPhoneResult.text = result.bank?.phone
+                        viewModel.deleteInfo()
                     }
                 } else {
                     binding.btnGet.isLoading = false
-                Toast.makeText(requireContext(), "No data available", Toast.LENGTH_LONG).show()
+                    viewModel.deleteInfo()
                 }
             }
         }
@@ -103,6 +104,7 @@ class MainFragment : Fragment() {
             etBinNumber.inputType = InputType.TYPE_CLASS_NUMBER
         }
     }
+
     private fun goToUrl(url: String) {
         val uri = Uri.parse(url)
         startActivity(Intent(Intent.ACTION_VIEW, uri))

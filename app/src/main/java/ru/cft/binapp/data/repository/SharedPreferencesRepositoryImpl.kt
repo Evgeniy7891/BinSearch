@@ -4,13 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
 import ru.cft.binapp.domain.repository.SharedPreferencesRepository
 import ru.cft.binapp.models.BinModel
 import javax.inject.Inject
 
-class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext context: Context) : SharedPreferencesRepository {
+class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext context: Context) :
+    SharedPreferencesRepository {
 
     private val gson = Gson()
     private val type = TypeToken.getParameterized(List::class.java, BinModel::class.java).type
@@ -20,7 +22,7 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
     private var history = mutableListOf<BinModel>()
 
     init {
-        pref.getString(key, null)?.let{
+        pref.getString(key, null)?.let {
             history = gson.fromJson(it, type)
         }
     }
@@ -34,8 +36,12 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
     }
 
     override suspend fun getHistory(): List<BinModel> {
-        pref.getString(key, "History empty")?.let {
-            result = gson.fromJson(it, type)
+        try {
+            pref.getString(key, "History empty")?.let {
+                result = gson.fromJson(it, type)
+            }
+        } catch (e: JsonSyntaxException) {
+            Log.d("TAG", "Message - $e")
         }
         return result
     }

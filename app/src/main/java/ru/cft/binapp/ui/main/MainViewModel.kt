@@ -3,6 +3,7 @@ package ru.cft.binapp.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.cft.binapp.domain.model.NetworkState
@@ -29,9 +30,14 @@ class MainViewModel @Inject constructor(
     fun getInfo(bin: Int) = viewModelScope.launch{
         when (val response = getInfoBinUseCase.invoke(bin)) {
             is NetworkState.Error -> _errorMessage.emit(response.throwable)
-            is NetworkState.Loading -> TODO("not implemented yet")
+            is NetworkState.Loading -> isLoading.value
             is NetworkState.Success -> _result.emit(response.success)
+
         }
     }
     suspend fun saveInfo(info: BinModel) = saveSharedPrefUseCase.invoke(info)
+
+    fun deleteInfo() {
+        _result.value = null
+    }
 }
